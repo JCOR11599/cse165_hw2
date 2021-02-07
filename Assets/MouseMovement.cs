@@ -11,9 +11,17 @@ public class MouseMovement : MonoBehaviour
     // Track mouse positions
     private Vector2 prevPos;
     private Vector2 currPos;
+    private Vector3 amount;
 
     // Track yaw (left and right rotations)
-    private float yaw = 0.0f;
+    private float yaw;
+    private Vector3 transformPosition;
+
+    void Start()
+    {
+        yaw = transform.eulerAngles.y;
+        transformPosition = transform.position;
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,15 +39,19 @@ public class MouseMovement : MonoBehaviour
             currPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
             // calculate amount of change
-            Vector2 amount = currPos - prevPos;
+            amount = currPos - prevPos;
 
             // calculate left and right rotations
             yaw += amount.x * lookSensitivity * Time.deltaTime;
             yaw %= 360;
 
             // move camera
-            transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
             transform.position += transform.forward * amount.y * movementSpeed * Time.deltaTime;
+            transformPosition = transform.position;
         }
+
+        // rotate camera
+        transform.position = transformPosition;
+        transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
     }
 }
