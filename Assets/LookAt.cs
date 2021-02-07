@@ -15,6 +15,6 @@ public class LookAt : MonoBehaviour
     void LateUpdate()
     {
         transform.LookAt(target);
-        transform.eulerAngles = new Vector3(70.0f, transform.eulerAngles.y, transform.eulerAngles.z);   
+        transform.eulerAngles = new Vector3(100.0f, transform.eulerAngles.y, transform.eulerAngles.z);   
     }
 }

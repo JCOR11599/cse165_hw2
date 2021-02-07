@@ -17,8 +17,11 @@ public class MouseMovement : MonoBehaviour
     private float yaw;
     private Vector3 transformPosition;
 
+    private GameManager gameManager;
+
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         yaw = transform.eulerAngles.y;
         transformPosition = transform.position;
     }
@@ -53,5 +56,10 @@ public class MouseMovement : MonoBehaviour
         // rotate camera
         transform.position = transformPosition;
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        gameManager.SendMessage("GameOver");
     }
 }
