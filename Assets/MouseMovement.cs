@@ -65,7 +65,7 @@ public class MouseMovement : MonoBehaviour
                 transform.position -= transform.forward * flyingMoveSpeed * Time.deltaTime;
             if (Input.GetKey("a"))
                 transform.position -= transform.right * flyingMoveSpeed * Time.deltaTime;
-            if (Input.GetKey("c"))
+            if (Input.GetKey("d"))
                 transform.position += transform.right * flyingMoveSpeed * Time.deltaTime;
         }
         else
